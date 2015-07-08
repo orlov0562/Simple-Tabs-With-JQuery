@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+	<title>Simple tabs</title>
+	<style>
+		body {font-family:Arial; font-size:12px;}
+		div.tabs {background-color:white; display:inline-block; margin:20px;}
+		div.tabs ul.tab-switcher {overflow:auto;list-style:none; padding:0px; margin: 0; position:relative; z-index:1000;}
+		div.tabs ul.tab-switcher li {float:left; background-color:silver; border-left:1px solid black; border-top:1px solid black;}
+		div.tabs ul.tab-switcher li.current {background-color:white;}
+		div.tabs ul.tab-switcher li a {display:block; border-bottom:1px solid black; padding:5px 10px; color:black; text-decoration:none;}
+		div.tabs ul.tab-switcher li.current a {border-bottom:1px solid white;}
+		div.tabs ul.tab-switcher li:last-child a {border-right:1px solid black;}
+		div.tabs>div {padding:10px; border:1px solid black;position:relative; top:-1px; z-index:500;}
+		.hidden {display:none;}
+	</style>
+</head>
+<body>
+	
+	<h1>Simple tabs</h1>
+	
+	<div class="tabs">
+		<ul class="tab-switcher">
+			<li class="current"><a href="#tab_1">Tab 1</a></li>
+			<li><a href="#tab_2">Tab 2</a></li>
+		</ul>
+		<div class="tab_1">Tab block 1, Tab 1</div>
+		<div class="tab_2 hidden">Tab block 1, Tab 2</div>
+	</div>
+
+	<div class="tabs">
+		<ul class="tab-switcher">
+			<li class="current"><a href="#tab_1">Tab 1</a></li>
+			<li><a href="#tab_2">Tab 2</a></li>
+			<li><a href="#tab_3">Tab 2</a></li>
+		</ul>
+		<div class="tab_1">Tab block 2, Tab 1</div>
+		<div class="tab_2 hidden">Tab block 2, Tab 2</div>
+		<div class="tab_3 hidden">Tab block 2, Tab 3</div>
+	</div>
+	
+	
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+	<script>
+        $(function(){
+            $('.tabs>ul.tab-switcher a').click(function(){
+                var tabClass = $(this).attr('href').replace('#','.');
+                $(this).closest('ul').children('li.current').removeClass('current');
+                $(this).closest('li').addClass('current');
+                $(this).closest('div').children('div:visible').hide();
+                $(this).closest('div').children(tabClass+':first').show();
+				return false;
+            });
+        });
+    </script>
+</body>
+</html>
