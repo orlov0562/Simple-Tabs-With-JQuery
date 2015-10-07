@@ -32,15 +32,15 @@
 		<ul class="tab-switcher">
 			<li class="current"><a href="#tab_1">Tab 1</a></li>
 			<li><a href="#tab_2">Tab 2</a></li>
-			<li><a href="#tab_3">Tab 2</a></li>
+			<li><a href="#tab_3">Tab 3</a></li>
 		</ul>
 		<div class="tab_1">Tab block 2, Tab 1</div>
 		<div class="tab_2 hidden">Tab block 2, Tab 2</div>
 		<div class="tab_3 hidden">Tab block 2, Tab 3</div>
 	</div>
 	
+	<script src="https://code.jquery.com/jquery-latest.js"></script>
 	
-	<script src="//code.jquery.com/jquery-latest.js"></script>
 	<script>
         $(function(){
             $('.tabs>ul.tab-switcher a').click(function(){
@@ -48,7 +48,7 @@
                 $(this).closest('ul').children('li.current').removeClass('current');
                 $(this).closest('li').addClass('current');
                 $(this).closest('div').children('div:visible').hide();
-                $(this).closest('div').children(tabClass+':first').show();
+                $(this).closest('div').children(tabClass).first().show();
 				return false;
             });
         });
